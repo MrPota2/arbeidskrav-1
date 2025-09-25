@@ -1,5 +1,7 @@
 import csv
 
+from helpers.error_utils import print_error_summary
+
 def get_most_borrowed_books(verbose: bool=False) -> dict:
     """
 
@@ -32,16 +34,18 @@ def get_most_borrowed_books(verbose: bool=False) -> dict:
                     print(f"WARNING: Row {row_num} skipped. Non-int value in int column: ({e})")
                 continue
 
-            borrowed_books[row["Boktittel"]] = borrowed_books.get(row["Boktittel"], 0) + 1 # Same logic utilized in 5.2
+            borrowed_books[row["Boktittel"]] = borrowed_books.get(row["Boktittel"], 0) + 1 # Same logic used in 5.2
 
     borrowed_books_sorted = {key: value for key, value in sorted(borrowed_books.items(), key=lambda book: (-book[1], book[0]))} # Used Stack Overflow to figure out how to negate only one of the values for correct sorting
 
     # Error summary
     if not verbose and num_of_error_rows > 0:
-        print(f"WARNING: {num_of_error_rows} invalid lines skipped.\nFor further details, run function with argument 'True'.")
-    if num_of_error_rows > 0: # Adds a seperator line between warnings and output
-        print(("=" * 30) + "\n")
+        print_error_summary(num_of_error_rows)
+
+    for title, amount in borrowed_books_sorted.items():
+        print(f"{title}: {amount}")
 
     return borrowed_books_sorted
 
 result = get_most_borrowed_books()
+

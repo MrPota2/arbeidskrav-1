@@ -1,5 +1,7 @@
 import csv
 
+from helpers.error_utils import print_error_summary
+
 def average_loan_period(verbose: bool=False) -> float:
     num_of_error_rows = 0
 
@@ -33,9 +35,7 @@ def average_loan_period(verbose: bool=False) -> float:
 
      # Error summary
     if not verbose and num_of_error_rows > 0:
-        print(f"WARNING: {num_of_error_rows} invalid lines skipped.\nFor further details, run function with argument 'True'.")
-    if num_of_error_rows > 0: # Adds a seperator line between warnings and output
-        print(("=" * 30) + "\n")
+        print_error_summary(num_of_error_rows)
 
     print(f"The average loan length is {average_loan_length:.0f} days.")
 

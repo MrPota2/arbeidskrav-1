@@ -1,5 +1,7 @@
 import csv
 
+from helpers.error_utils import print_error_summary
+
 def books_per_genre(verbose: bool=False) -> dict:
     """
     Opens and reads *bokutlån.csv*, and sorts each genre into enumerated dictionary entries.
@@ -40,9 +42,7 @@ def books_per_genre(verbose: bool=False) -> dict:
 
     # Error summary
     if not verbose and num_of_error_rows > 0:
-        print(f"WARNING: {num_of_error_rows} invalid lines skipped.\nFor further details, run function with argument 'True'.")
-    if num_of_error_rows > 0: # Adds a seperator line between warnings and output
-        print(("=" * 30) + "\n")
+        print_error_summary(num_of_error_rows)
 
     for genre, amount in books_per_genre_dict.items():
         print(f"{genre}: {amount}")

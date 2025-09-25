@@ -1,5 +1,7 @@
 import csv
 
+from helpers.error_utils import print_error_summary
+
 def list_unreturned_books(verbose: bool=False) -> list:
     books_not_returned = []
     num_of_error_rows = 0
@@ -31,13 +33,9 @@ def list_unreturned_books(verbose: bool=False) -> list:
                 full_name = f"{row["Fornavn"]} {row["Etternavn"]}"
                 books_not_returned.append((row["Boktittel"], full_name))
 
-
     # Error summary
         if not verbose and num_of_error_rows > 0:
-            print(f"WARNING: {num_of_error_rows} invalid lines skipped.\nFor further details, run function with argument 'True'.")
-        if num_of_error_rows > 0: # Adds a seperator line between warnings and output
-            print(("=" * 30) + "\n")
-
+            print_error_summary(num_of_error_rows)
 
     return books_not_returned
 

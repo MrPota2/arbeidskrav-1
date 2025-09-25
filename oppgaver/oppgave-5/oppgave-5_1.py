@@ -1,7 +1,6 @@
 import csv
 
-from pycparser.ply.yacc import resultlimit
-
+from helpers.error_utils import print_error_summary
 
 def get_total_extension_days(verbose: bool=False) -> int:
     """
@@ -40,9 +39,7 @@ def get_total_extension_days(verbose: bool=False) -> int:
 
         # Error summary
         if not verbose and num_of_error_rows > 0:
-            print(f"WARNING: {num_of_error_rows} invalid lines skipped.\nFor further details, run function with argument 'True'.")
-        if num_of_error_rows > 0: # Adds a seperator line between warnings and output
-            print(("=" * 30) + "\n")
+            print_error_summary(num_of_error_rows)
 
     print(f"Total extension days: {extensions}.")
 
