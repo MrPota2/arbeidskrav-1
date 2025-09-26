@@ -1,8 +1,16 @@
-def date_checker(date_list: list[int]) -> bool:
+"""
+NOTE: To give myself a challenge here, I decided not to use a datetime import as that would have made it easy,
+but to destructure it and calculate the difference.
+However I am not sadist, so I haven't taken the difference between 28-30-31 days per month into equation,
+but I hope it will be good enough to prove the exercise...
+GPT calculated accuracy to 98.6%... ;)
+"""
+
+def date_checker(date_list: list[int]) -> None:
     """
     Simplified date value checker, manually validating date and month.
     :param date_list: A split segment of a date
-    :return: Returns a bool value, where True = valid date
+    :return: Returns a bool voalue, where True = valid date
     """
 
     if not (1 <= date_list[0] <= 31 and 1 <= date_list[1] <= 12):
