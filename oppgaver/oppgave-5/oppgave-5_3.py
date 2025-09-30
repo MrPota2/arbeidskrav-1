@@ -25,7 +25,7 @@ def average_loan_period(verbose: bool=False) -> float:
     if not verbose and num_of_error_rows > 0:
         print_error_summary(num_of_error_rows)
 
-    print(f"The average loan length is {average_loan_length:.0f} days.")
+    print(f"The average loan duration is:\n{average_loan_length:.0f} days")
 
     return average_loan_length
 

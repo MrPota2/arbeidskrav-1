@@ -1,7 +1,3 @@
-"""
-Datetime import version of 3.2
-"""
-
 from datetime import date, timedelta
 
 def get_validated_date() -> date | bool:
