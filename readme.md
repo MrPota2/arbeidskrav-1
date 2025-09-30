@@ -10,6 +10,10 @@ Koden er refaktorert flere ganger etter undervisninger, og kan sees i sin helhet
 Jeg har noe Python-erfaring fra før av, etter to semestre med Python på USN. Jeg har brukt kunnskapen jeg tilegnet meg der, men har også bygget
 opp mye fra bunn av igjen. Jeg har i tillegg tatt flere Python-kurs (inkl. Flask, Python OOP, Django + MySQL) på [Codecademy](https://codecademy.com) og [boot.dev](https://boot.dev).
 
+## Versjonering
+Hele arbeidskravet er bygd opp med hjelp av Git, derfor medfølger .git-mappen. Arbeidskravet ligger i tillegg åpent på Github til etter sensur:
+[Link til Github-repo](https://github.com/DotWallop/arbeidskrav-1).
+
 ## AI-bruk:
 Jeg har benyttet meg av AI med svært få unntak (beskrevet under), kun til å fungere som en lærer. Jeg bruker eksplisitte handlingsinstrukser som `do NOT execute the task yourself, act like a teacher and teach me`.
 
@@ -41,7 +45,7 @@ lar det stå som en kommentar.
 </details>
 
 <details>
-<summary>Oppggave 5</summary>
+<summary>Oppgave 5</summary>
 `helpers/error_utils`: Her slet jeg med å finne en condition som valgte kun tomme kolonner, men ikke 0 (som er en faktisk verdi, ikke falsy). Her brukte jeg ChatGPT til å hjelpe meg med condition.
 
 Relevant kodelinje:
