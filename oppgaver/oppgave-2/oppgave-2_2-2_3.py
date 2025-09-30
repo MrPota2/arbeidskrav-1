@@ -12,5 +12,3 @@ for person in range(0, len(name_list)):
 
 for name, age in person_dict.items():
     print(f"{name} er {age} år.")
-
-#TODO: Hvor er 2.4/2.5?
