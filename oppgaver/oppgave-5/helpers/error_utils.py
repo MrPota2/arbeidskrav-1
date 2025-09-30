@@ -11,7 +11,7 @@ def is_row_columns_valid(row: dict, row_num: int, headers, verbose: bool=False) 
     """Function returns False if row columns are not valid, and True if there are no errors"""
 
     # Empty field sanitizer
-    if any(row[col] is None or row[col] == "" for col in headers):  # Worked with GPT for this line, to find a comparator that would match if ANY column returned None or blank TODO: add this comment in readme instead
+    if any(row[col] is None or row[col] == "" for col in headers):
         if verbose:
             print(f"WARNING: Row {row_num} skipped. Empty column detected.")
         return False

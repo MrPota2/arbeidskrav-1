@@ -1,51 +1,37 @@
 """
-NOTE: To give myself a challenge here, I decided not to use a datetime import as that would have made it easy,
-but to destructure it and calculate the difference.
-However I am not sadist, so I haven't taken the difference between 28-30-31 days per month into equation,
-but I hope it will be good enough to prove the exercise...
-GPT calculated accuracy to 98.6%... ;)
+Datetime import version of 3.2
 """
 
-def date_checker(date_list: list[int]) -> None:
-    """
-    Simplified date value checker, manually validating date and month.
-    :param date_list: A split segment of a date
-    :return: Returns a bool voalue, where True = valid date
-    """
+from datetime import date, timedelta
 
-    if not (1 <= date_list[0] <= 31 and 1 <= date_list[1] <= 12):
-        raise ValueError("ERROR: Invalid date format, ensure (dd/mm/yyyy)")
+def get_validated_date() -> date | bool:
+    date_list = input("Skriv inn dato\n(dd/mm/yyyy): ").split("/")
 
-def time_difference_calculator(first_list: list[int], second_list: list[int]) -> int:
-    """
-    Takes two user-inputted dates (dd/mm/yyyy format) and returns the absolute difference between the two dates.
-    :param first_list: A list of date segments
-    :param second_list: A list of date segments
-    :return: Returns the amount of days between the two selected dates.
-    """
-    time_difference = 0
+    try:
+        date_list = [int(segment) for segment in date_list]
+    except ValueError as e:
+        print(f"Error: non-integer value in date segment: {e}")
+        return False
 
-    time_difference += first_list[0] - second_list[0] # Day
-    time_difference += (first_list[1] - second_list[1]) * 30 # Month
-    time_difference += (first_list[2] - second_list[2]) * 365 # Year
-
-    return abs(time_difference) # Drops the sign in case of negative number
+    try:
+        date_object = date(date_list[2], date_list[1], date_list[0])
+    except ValueError as e:
+        print(f"Error: Value entered is not a valid date: {e}")
+        return False
+    else:
+        return date_object
 
 
-first_date = input("Skriv inn den første datoen\n(dd/mm/yyyy): ")
-second_date = input("Skriv inn den andre datoen\n(dd/mm/yyyy): ")
+def time_difference_calculator(first_date_obj: date, second_date_obj: date) -> int:
+    difference_in_days = abs((first_date_obj - second_date_obj).days)
+    return difference_in_days
 
-first_date_list = [int(segment) for segment in first_date.split("/")]
-second_date_list = [int(segment) for segment in second_date.split("/")]
 
-try:
-    date_checker(first_date_list)
-    date_checker(second_date_list)
-except ValueError as e:
-    print("Wrong date format: ", e)
+first_date = get_validated_date()
+second_date = get_validated_date()
 
-else:
-    day_difference = time_difference_calculator(first_date_list, second_date_list)
-    print(f"{day_difference} dager")
-
-# TODO: Include a datetime version for accuracy?
+print(
+    "Det er "
+    f"{time_difference_calculator(first_date, second_date)} "
+    f"dager mellom {first_date.strftime("%d.%m.%y")} og {second_date.strftime("%d.%m.%y")}."
+)

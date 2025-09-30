@@ -19,5 +19,3 @@ while True: # Wrapped in an infinite while-loop so it will prompt you to try aga
         print("Success!\nIndices successfully swapped. New list:\n")
         print(fruits)
         break
-#%% md
-## Oppgave 1.5
